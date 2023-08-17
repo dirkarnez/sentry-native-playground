@@ -10,8 +10,11 @@ int main(void) {
   sentry_options_set_debug(options, 1);
   sentry_init(options);
 
-  /* ... */
-
+  sentry_capture_event(sentry_value_new_message_event(
+    /*   level */ SENTRY_LEVEL_INFO,
+    /*  logger */ "custom",
+    /* message */ "It works!"
+  ));
   // make sure everything flushes
   sentry_close();
 }
